@@ -394,12 +394,13 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private View mPendingWorkRemoteInputView;
 
     int mMaxAllowedKeyguardNotifications;
-
+	
     // carrier label
+	private int mShowCarrierLabel;
     private TextView mCarrierLabel;
     private boolean mShowCarrierInPanel = false;
+
     boolean mExpandedVisible;
-    private int mShowCarrierLabel;
 
     private int mNavigationBarWindowState = WINDOW_STATE_SHOWING;
 	
@@ -486,6 +487,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.QS_COLUMNS),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_SHOW_CARRIER), false, this,
+                    UserHandle.USER_ALL);
             update();
         }
 
@@ -523,8 +527,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             } else if (uri.equals(Settings.Secure.getUriFor(
                     Settings.Secure.QS_COLUMNS))) {
                     updateResources();
+			} else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_SHOW_CARRIER))) {
+                update();
+                updateCarrier();
             }
-
             update();
             updateRowStates();
             updateSpeedbump();
@@ -1057,7 +1064,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         initSignalCluster(mStatusBarView);
         initSignalCluster(mKeyguardStatusBar);
 
-        mCarrierLabel = (TextView)mStatusBarWindow.findViewById(R.id.carrier_label);
         final boolean showCarrierLabel = mContext.getResources().getBoolean(
                 R.bool.config_showCarrierLabel);
         mShowCarrierInPanel = showCarrierLabel && (mCarrierLabel != null);
@@ -1066,6 +1072,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mCarrierLabel.setVisibility(mShowCarrierInPanel ? View.VISIBLE : View.INVISIBLE);
         }
 
+		mCarrierLabel = (TextView)mStatusBarWindow.findViewById(R.id.carrier_label);
         // make sure carrier label is not covered by navigation bar
         if (mCarrierLabel != null && mNavigationBarView != null) {
             MarginLayoutParams mlp = (MarginLayoutParams) mCarrierLabel.getLayoutParams();
@@ -1079,7 +1086,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (mCarrierLabel != null) {
             updateCarrier();
         }
- 
+		
         mFlashlightController = new FlashlightController(mContext);
         mKeyguardBottomArea.setFlashlightController(mFlashlightController);
         mKeyguardBottomArea.setPhoneStatusBar(this);
@@ -2119,7 +2126,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         return mNotificationData.hasActiveClearableNotifications();
     }
 
-	private void updateCarrier() {
+    private void updateCarrier() {
         if (mCarrierLabel != null) {
             if (mShowCarrierLabel == 2) {
                 mCarrierLabel.setVisibility(View.VISIBLE);
@@ -2130,7 +2137,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
         }
     }
-	
+
     @Override
     protected void setAreThereNotifications() {
 
