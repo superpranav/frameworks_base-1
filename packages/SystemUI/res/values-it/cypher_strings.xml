@@ -93,4 +93,16 @@
     <string name="tuner_display_color">Colore dello schermo &amp; aspetto</string>
     <!-- notification controls -->
     <string name="tuner_notification_control">Comandi di accensione notifica</string>
+	
+	<!-- Screenrecord Notification Ticker -->
+    <string name="screenrecord_notif_ticker">Lo schermo è in fase di registrazione</string>
+    <!-- Screenrecord notification title -->
+    <string name="screenrecord_notif_title">Schermata di registrazione</string>
+    <!-- Screenrecord notification action: Stop -->
+    <string name="screenrecord_notif_stop">Ferma</string>
+    <!-- Screenrecord notification action: show/hide pointer -->
+    <string name="screenrecord_notif_pointer_on">Visualizza puntatore</string>
+    <string name="screenrecord_notif_pointer_off">Nascondi puntatore</string>
+    <!-- Screen record notification error title -->
+    <string name="screenrecord_notif_error">Impossibile registrare lo schermo</string>
 </resources>
