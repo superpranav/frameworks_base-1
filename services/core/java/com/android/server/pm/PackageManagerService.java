@@ -2370,7 +2370,7 @@ public class PackageManagerService extends IPackageManager.Stub {
                     // Collect overlay in <Package>/system/vendor
                     scanDirLI(new File(RegionalizationSystemDir, "vendor/overlay"),
                             PackageParser.PARSE_IS_SYSTEM | PackageParser.PARSE_IS_SYSTEM_DIR,
-                            scanFlags | SCAN_TRUSTED_OVERLAY, 0);
+                            scanFlags);
                 }
             }
 
@@ -16300,10 +16300,10 @@ public class PackageManagerService extends IPackageManager.Stub {
             }
             ps.setUserState(nextUserId, 0, COMPONENT_ENABLED_STATE_DEFAULT,
                     false /*installed*/, true /*stopped*/, true /*notLaunched*/,
-                    false /*hidden*/, false /*suspended*/, null, null, null,
+                    false /*hidden*/, false /*suspended*/,
                     false /*blockUninstall*/,
                     ps.readUserState(nextUserId).domainVerificationStatus, 0,
-                    null, null);
+                    );
 
 
         }
