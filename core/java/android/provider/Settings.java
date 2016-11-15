@@ -3487,6 +3487,41 @@ public final class Settings {
 
         /** @hide */
         public static final Validator NOTIFICATION_LIGHT_PULSE_VALIDATOR = sBooleanValidator;
+        
+        /**
+         * Int value of the battery style 0 is default
+         *
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_STYLE = "statusbar_battery_style";
+
+        /**
+         * int value if the battery percent should be shown never/always/expanded
+         *
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_PERCENT = "statusbar_battery_percent";
+
+        /**
+         * boolean value if the battery percent should be shown inside the image
+         *
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_PERCENT_INSIDE = "statusbar_battery_percent_inside";
+
+        /**
+         * boolean value if the charging flash should be displayed
+         *
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_CHARGING_IMAGE = "statusbar_battery_charging_image";
+
+        /**
+         * when to show battery - values are 0/none 1/always 2/expanded default is 1/always
+         *
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_ENABLE = "statusbar_battery_enable";
 
         /**
          * Show pointer location on screen?
@@ -3756,7 +3791,7 @@ public final class Settings {
          * Show four g instead of lte
          * @hide
          */
-        public static final String SHOW_FOURG = "show_fourg"; 
+        public static final String SHOW_LTE_FOURGEE = "show_lte_fourgee"; 
 
        /**
         * USB Data automatic unlock
@@ -3941,6 +3976,12 @@ public final class Settings {
          */
         public static final String NOTIFICATION_LIGHT_SCREEN_ON =
                 "notification_light_screen_on_enable";
+				
+		/**
+         * Quick Settings number of culumns 
+         * @hide
+         */
+        public static final String QS_LAYOUT_COLUMNS = "qs_layout_columns";
 
         /**
          * Quick Settings Smart Pulldown
@@ -7103,27 +7144,6 @@ public final class Settings {
          * @hide
          */
         public static final String QS_DATA_ADVANCED = "qs_data_advanced";
-		
-		/**
-         * Number of rows used for the Quick Settings (portrait)
-         *
-         * @hide
-         */
-        public static final String QS_ROWS_PORTRAIT = "qs_rows_portrait";
-
-        /**
-         * Number of rows used for the Quick Settings (landscape)
-         *
-         * @hide
-         */
-        public static final String QS_ROWS_LANDSCAPE = "qs_rows_landscape";
-
-        /**
-         * Number of columns used for the Quick Settings
-         *
-         * @hide
-         */
-        public static final String QS_COLUMNS = "qs_columns";
 		
 		/**
          * Whether or not the automatic storage manager is enabled and should run on the device.
